@@ -1,0 +1,44 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    align-items: center;
+    background: #393637;
+    display: flex;
+    font-family: sans-serif;
+    font-variant-caps: small-caps;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+button {
+    -webkit-appearance: none;
+    background: none;
+    border-radius: .4em;
+    border-width: 1px;
+    color: #fff;
+    font-size: 1.2em;
+    font-variant-caps: small-caps;
+    font: inherit;
+    margin: 0;
+    padding: .5em 1em;
+}
+
+progress {
+    display: block;
+}
+
+
+#examples {
+    position: absolute;
+    right: 3vw;
+    bottom: 5vh;
+}
+
+use {
+    transform: scale(1.2) translate(14.14, -14.14) rotate(292.5deg);
+}

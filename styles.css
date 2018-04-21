@@ -28,6 +28,11 @@ button {
     padding: .5em 1em;
 }
 
+.motor > b {
+    color: #fff;
+    cursor: pointer;
+}
+
 progress {
     display: block;
 }

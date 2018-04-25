@@ -44,6 +44,13 @@ progress {
     bottom: 5vh;
 }
 
-use {
-    transform: scale(1.2) translate(14.14, -14.14) rotate(292.5deg);
+#connectionStatus {
+    position: absolute;
+    top: 3vh;
+    right: 3vw;
+    color: #fff;
 }
+
+/* use {
+    transform: scale(1.2) translate(14.14, -14.14) rotate(292.5deg);
+} */

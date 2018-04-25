@@ -5,6 +5,11 @@ const mapInputToOutputRange = (val, inputMin, inputMax, outputMin, outputMax) =>
 const url = `ws://${window.location.hostname}:${window.location.port}`;
 const ws = new WebSocket('ws://127.0.0.1:3000');
 
+ws.onopen = () => document.querySelector('#connectionStatus > span').textContent = 'Connected';
+ws.onclose = () => document.querySelector('#connectionStatus > span').textContent = 'Not Connected!';
+ws.onerror = () => document.querySelector('#connectionStatus > span').textContent = 'An error occured';
+ws.onmessage = (message) => console.log(message);
+
 
 const Motor = function Motor(id, DomNode) {
 	this._node = DomNode;

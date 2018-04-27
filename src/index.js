@@ -2,8 +2,10 @@ const mapInputToOutputRange = (val, inputMin, inputMax, outputMin, outputMax) =>
 	return (outputMax - outputMin) * (val - inputMin) / (inputMax - inputMin) + outputMin;
 };
 
+// IPv4: 'ws://127.0.0.1:3000'
+// IPv6: 'ws://[::1]:1337'
 const url = `ws://${window.location.hostname}:${window.location.port}`;
-const ws = new WebSocket('ws://127.0.0.1:3000');
+const ws = new WebSocket(url);
 
 ws.onopen = () => document.querySelector('#connectionStatus > span').textContent = 'Connected';
 ws.onclose = () => document.querySelector('#connectionStatus > span').textContent = 'Not Connected!';

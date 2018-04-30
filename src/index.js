@@ -5,12 +5,18 @@ const mapInputToOutputRange = (val, inputMin, inputMax, outputMin, outputMax) =>
 // IPv4: 'ws://127.0.0.1:3000'
 // IPv6: 'ws://[::1]:1337'
 const url = `ws://${window.location.hostname}:${window.location.port}`;
-const ws = new WebSocket(url);
+// const ws = new WebSocket(url);
 
-ws.onopen = () => document.querySelector('#connectionStatus > span').textContent = 'Connected';
-ws.onclose = () => document.querySelector('#connectionStatus > span').textContent = 'Not Connected!';
-ws.onerror = () => document.querySelector('#connectionStatus > span').textContent = 'An error occured';
-ws.onmessage = (message) => console.log(message);
+// ws.onopen = () => document.querySelector('#connectionStatus > span').textContent = 'Connected';
+// ws.onclose = () => document.querySelector('#connectionStatus > span').textContent = 'Not Connected!';
+// ws.onerror = () => document.querySelector('#connectionStatus > span').textContent = 'An error occured';
+// ws.onmessage = (message) => console.log(message);
+
+const socket = io(url);
+socket.on('connect', () => document.querySelector('#connectionStatus > span').textContent = 'Connected');
+socket.on('disconnect', () => document.querySelector('#connectionStatus > span').textContent = 'Not Connected!');
+socket.on('connect_error', document.querySelector('#connectionStatus > span').textContent = 'An connection error occured');
+socket.on('error', () => document.querySelector('#connectionStatus > span').textContent = 'An error occured');
 
 
 const Motor = function Motor(id, DomNode) {
@@ -55,9 +61,10 @@ Object.defineProperties(Motor.prototype, {
 
 Motor.prototype.submit = function submit() {
 	const payload = { type: 'VIBRATION', payload: `${this.id}=${this.pwm}` };
-	if (ws.readyState === ws.OPEN) {
-		ws.send(JSON.stringify(payload));
-	}
+	// if (ws.readyState === ws.OPEN) {
+	// 	ws.send(JSON.stringify(payload));
+	// }
+	socket.emit('message', JSON.stringify(payload));
 	console.log(payload);
 }
 

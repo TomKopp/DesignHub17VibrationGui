@@ -76,13 +76,13 @@ Motor.prototype.decreaseBy = function decreaseBy(val) {
 	this.intensity -= val;
 }
 
-const m0 = new Motor(0, document.getElementById('motor0'));
-const m1 = new Motor(1, document.getElementById('motor1'));
-const m2 = new Motor(2, document.getElementById('motor2'));
-const m3 = new Motor(3, document.getElementById('motor3'));
-const m4 = new Motor(4, document.getElementById('motor4'));
-const m5 = new Motor(5, document.getElementById('motor5'));
-const m6 = new Motor(6, document.getElementById('motor6'));
-const m7 = new Motor(7, document.getElementById('motor7'));
+const m0 = new Motor(0, document.getElementById('Herbert'));
+const m1 = new Motor(1, document.getElementById('Willhelm'));
+const m2 = new Motor(2, document.getElementById('Volker'));
+const m3 = new Motor(3, document.getElementById('Dietmar'));
+const m4 = new Motor(4, document.getElementById('Günther'));
+const m5 = new Motor(5, document.getElementById('Albert'));
+const m6 = new Motor(6, document.getElementById('Rufus'));
+const m7 = new Motor(7, document.getElementById('Werner'));
 
 console.log(m0);

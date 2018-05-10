@@ -2,6 +2,10 @@ const mapInputToOutputRange = (val, inputMin, inputMax, outputMin, outputMax) =>
 	return (outputMax - outputMin) * (val - inputMin) / (inputMax - inputMin) + outputMin;
 };
 
+const clampValue = (val, min, max) => {
+	return Math.min(Math.max(min, val), max);
+}
+
 // IPv4: 'ws://127.0.0.1:3000'
 // IPv6: 'ws://[::1]:1337'
 const url = `ws://${window.location.hostname}:${window.location.port}`;
@@ -73,9 +77,10 @@ Object.defineProperties(Motor.prototype, {
 			return this._intensity;
 		},
 		set(value) {
-			this._intensity = value;
-			this._progress.value = value;
-			this._progress.textContent = `${value}%`;
+			const tmp = clampValue(value, 0, 100);
+			this._intensity = tmp;
+			this._progress.value = tmp;
+			this._progress.textContent = `${tmp}%`;
 		}
 	},
 	pwm: {

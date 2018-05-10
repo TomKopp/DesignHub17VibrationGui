@@ -18,7 +18,7 @@ socket.on('disconnect', () => document.querySelector('#connectionStatus > span')
 socket.on('connect_error', document.querySelector('#connectionStatus > span').textContent = 'An connection error occured');
 socket.on('error', () => document.querySelector('#connectionStatus > span').textContent = 'An error occured');
 
-const angles = [
+const ANGLES = [
 	-22.5,
 	22.5,
 	67.5,
@@ -30,7 +30,7 @@ const angles = [
 ]
 
 function activate(id) {
-	socket.broadcast.emit('bobble', {payload: {angle: angles[id]}});
+	socket.emit('bobble', JSON.stringify({payload: {angle: ANGLES[id]}}));
 }
 
 const Motor = function Motor(id, DomNode) {

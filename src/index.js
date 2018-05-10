@@ -29,7 +29,15 @@ const ANGLES = [
 	292.5
 ]
 
+const fills = document.querySelectorAll("[href='#fill']");
+
 function activate(id) {
+	// reset each time (very hacky, much wow)
+	fills.forEach(fill => {
+		fill.style.cssText = "stroke: #ECECEC; stroke-width: 90;";
+	})
+	let activeFill = document.getElementById('fill'+(id+1));
+	activeFill.style.cssText = 'stroke: #F24C47; stroke-width: 90;';
 	socket.emit('bobble', JSON.stringify({action: 'CHANGE_DIRECTION', payload: {angle: ANGLES[id]}}));
 }
 
@@ -82,7 +90,7 @@ Object.defineProperties(Motor.prototype, {
 });
 
 Motor.prototype.submit = function submit() {
-	const payload = { type: 'VIBRATION', payload: `${this.id}=${this.pwm}` };
+	const payload = { action: 'VIBRATION', payload: `${this.id}=${this.pwm}` };
 	// if (ws.readyState === ws.OPEN) {
 	// 	ws.send(JSON.stringify(payload));
 	// }

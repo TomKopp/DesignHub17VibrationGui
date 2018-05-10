@@ -30,7 +30,15 @@ const ANGLES = [
 ]
 
 function activate(id) {
-	socket.emit('bobble', JSON.stringify({payload: {angle: ANGLES[id]}}));
+	socket.emit('bobble', JSON.stringify({action: 'CHANGE_DIRECTION', payload: {angle: ANGLES[id]}}));
+}
+
+function switchEdgy() {
+	socket.emit('bobble', JSON.stringify({action: 'SWITCH_EDGY'}));
+}
+
+function playPause() {
+	socket.emit('bobble', JSON.stringify({action: 'PLAYPAUSE'}));
 }
 
 const Motor = function Motor(id, DomNode) {

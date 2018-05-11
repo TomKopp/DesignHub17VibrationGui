@@ -9,8 +9,8 @@ const clampValue = (val, min, max) => {
 // IPv4: 'ws://127.0.0.1:3000'
 // IPv6: 'ws://[::1]:1337'
 const url = `ws://${window.location.hostname}:${window.location.port}`;
-// const ws = new WebSocket(url);
 
+// const ws = new WebSocket(url);
 // ws.onopen = () => document.querySelector('#connectionStatus > span').textContent = 'Connected';
 // ws.onclose = () => document.querySelector('#connectionStatus > span').textContent = 'Not Connected!';
 // ws.onerror = () => document.querySelector('#connectionStatus > span').textContent = 'An error occured';
@@ -23,13 +23,15 @@ socket.on('connect_error', document.querySelector('#connectionStatus > span').te
 socket.on('error', () => document.querySelector('#connectionStatus > span').textContent = 'An error occured');
 
 
-const Motor = function Motor(id, DomNode) {
+function Motor(id, DomNode) {
 	this._node = DomNode;
 	this._progress = this._node.querySelector('progress');
 	this._id = id;
 	this._intensity;
+	this._timeout;
 
-	this._node.addEventListener('click', () => this.submit());
+	this._node.addEventListener('mousedown', this.mouseDownHandler.bind(this));
+	window.addEventListener('mouseup', this.mouseUpHandler.bind(this));
 	this._node.previousElementSibling.addEventListener('click', () => this.decreaseBy(5));
 	this._node.nextElementSibling.addEventListener('click', () => this.increaseBy(5));
 
@@ -64,13 +66,23 @@ Object.defineProperties(Motor.prototype, {
 	}
 });
 
+Motor.prototype.mouseDownHandler = function mouseDownHandler() {
+	this.submit();
+}
+
+Motor.prototype.mouseUpHandler = function mouseUpHandler() {
+	clearTimeout(this._timeout);
+}
+
 Motor.prototype.submit = function submit() {
 	const payload = { type: 'VIBRATION', payload: `${this.id}=${this.pwm}` };
+	socket.emit('message', JSON.stringify(payload));
+
+	this._timeout = setTimeout(this.submit.bind(this), 250);
 	// if (ws.readyState === ws.OPEN) {
 	// 	ws.send(JSON.stringify(payload));
 	// }
-	socket.emit('message', JSON.stringify(payload));
-	console.log(payload);
+	// console.log(payload);
 }
 
 Motor.prototype.increaseBy = function increaseBy(val) {

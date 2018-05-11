@@ -22,6 +22,36 @@ socket.on('disconnect', () => document.querySelector('#connectionStatus > span')
 socket.on('connect_error', document.querySelector('#connectionStatus > span').textContent = 'An connection error occured');
 socket.on('error', () => document.querySelector('#connectionStatus > span').textContent = 'An error occured');
 
+const ANGLES = [
+	-22.5,
+	22.5,
+	67.5,
+	112.5,
+	157.5,
+	202.5,
+	247.5,
+	292.5
+]
+
+const fills = document.querySelectorAll("[href='#fill']");
+
+function activate(id) {
+	// reset each time (very hacky, much wow)
+	fills.forEach(fill => {
+		fill.style.cssText = "stroke: #ECECEC; stroke-width: 90;";
+	})
+	let activeFill = document.getElementById('fill'+(id+1));
+	activeFill.style.cssText = 'stroke: #F24C47; stroke-width: 90;';
+	socket.emit('bobble', JSON.stringify({action: 'CHANGE_DIRECTION', payload: {angle: ANGLES[id]}}));
+}
+
+function switchEdgy() {
+	socket.emit('bobble', JSON.stringify({action: 'SWITCH_EDGY'}));
+}
+
+function playPause() {
+	socket.emit('bobble', JSON.stringify({action: 'PLAYPAUSE'}));
+}
 
 function Motor(id, DomNode) {
 	this._node = DomNode;
@@ -75,7 +105,8 @@ Motor.prototype.mouseUpHandler = function mouseUpHandler() {
 }
 
 Motor.prototype.submit = function submit() {
-	const payload = { type: 'VIBRATION', payload: `${this.id}=${this.pwm}` };
+
+	const payload = { action: 'VIBRATION', payload: `${this.id}=${this.pwm}` };
 	socket.emit('message', JSON.stringify(payload));
 
 	this._timeout = setTimeout(this.submit.bind(this), 250);

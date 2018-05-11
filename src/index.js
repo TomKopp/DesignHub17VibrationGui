@@ -22,36 +22,35 @@ socket.on('disconnect', () => document.querySelector('#connectionStatus > span')
 socket.on('connect_error', document.querySelector('#connectionStatus > span').textContent = 'An connection error occured');
 socket.on('error', () => document.querySelector('#connectionStatus > span').textContent = 'An error occured');
 
-const ANGLES = [
-	-22.5,
-	22.5,
-	67.5,
-	112.5,
-	157.5,
-	202.5,
-	247.5,
-	292.5
-]
 
-const fills = document.querySelectorAll("[href='#fill']");
 
-function activate(id) {
-	// reset each time (very hacky, much wow)
-	fills.forEach(fill => {
-		fill.style.cssText = "stroke: #ECECEC; stroke-width: 90;";
-	})
-	let activeFill = document.getElementById('fill'+(id+1));
-	activeFill.style.cssText = 'stroke: #F24C47; stroke-width: 90;';
-	socket.emit('bobble', JSON.stringify({action: 'CHANGE_DIRECTION', payload: {angle: ANGLES[id]}}));
-}
+const segments = document.querySelectorAll('[data-segmentId]');
 
-function switchEdgy() {
-	socket.emit('bobble', JSON.stringify({action: 'SWITCH_EDGY'}));
-}
+segments.forEach((el) => {
+	el.isActive = false;
+	el.addEventListener('mousedown', function (event) {
+		this.querySelector('[href="#fill"').style.cssText = 'stroke: #F24C47; stroke-width: 90;';
+		socket.emit('bobble', JSON.stringify({ action: 'CHANGE_DIRECTION', payload: { angle: this.dataset['angle'] } }));
+	});
+});
 
-function playPause() {
-	socket.emit('bobble', JSON.stringify({action: 'PLAYPAUSE'}));
-}
+window.addEventListener('mouseup', function (event) {
+	segments.forEach((el) => {
+		el.querySelector('[href="#fill"').style.cssText = "stroke: #ECECEC; stroke-width: 90;";
+	});
+});
+
+document.getElementById('switchEdgy').addEventListener('click', () => {
+	console.debug(JSON.stringify({ action: 'SWITCH_EDGY' }));
+	socket.emit('bobble', JSON.stringify({ action: 'SWITCH_EDGY' }));
+});
+
+document.getElementById('playPause').addEventListener('click', () => {
+	console.debug(JSON.stringify({ action: 'PLAYPAUSE' }));
+	socket.emit('bobble', JSON.stringify({ action: 'PLAYPAUSE' }));
+});
+
+
 
 function Motor(id, DomNode) {
 	this._node = DomNode;
@@ -123,6 +122,8 @@ Motor.prototype.increaseBy = function increaseBy(val) {
 Motor.prototype.decreaseBy = function decreaseBy(val) {
 	this.intensity -= val;
 }
+
+
 
 const m0 = new Motor(0, document.getElementById('Herbert'));
 const m1 = new Motor(1, document.getElementById('Willhelm'));

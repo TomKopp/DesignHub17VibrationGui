@@ -13,66 +13,7 @@
 	<!-- #393637 - dark grey / bg -->
 	<!-- #656363 - mid grey / el body color -->
 
-	<div id="ring">
-		<div class="motor">
-			<b class="down">&#8681;</b>
-			<button id="Herbert">Motor 0
-				<progress max="100" value="0">0%</progress>
-			</button>
-			<b class="up">&#8679;</b>
-		</div>
-		<div class="motor">
-			<b class="down">&#8681;</b>
-			<button id="Willhelm">Motor 1
-				<progress max="100" value="0">0%</progress>
-			</button>
-			<b class="up">&#8679;</b>
-		</div>
-		<div class="motor">
-			<b class="down">&#8681;</b>
-			<button id="Volker">Motor 2
-				<progress max="100" value="0">0%</progress>
-			</button>
-			<b class="up">&#8679;</b>
-		</div>
-		<div class="motor">
-			<b class="down">&#8681;</b>
-			<button id="Dietmar">Motor 3
-				<progress max="100" value="0">0%</progress>
-			</button>
-			<b class="up">&#8679;</b>
-		</div>
-		<div class="motor">
-			<b class="down">&#8681;</b>
-			<button id="Günther">Motor 4
-				<progress max="100" value="0">0%</progress>
-			</button>
-			<b class="up">&#8679;</b>
-		</div>
-		<div class="motor">
-			<b class="down">&#8681;</b>
-			<button id="Albert">Motor 5
-				<progress max="100" value="0">0%</progress>
-			</button>
-			<b class="up">&#8679;</b>
-		</div>
-		<div class="motor">
-			<b class="down">&#8681;</b>
-			<button id="Rufus">Motor 6
-				<progress max="100" value="0">0%</progress>
-			</button>
-			<b class="up">&#8679;</b>
-		</div>
-		<div class="motor">
-			<b class="down">&#8681;</b>
-			<button id="Werner">Motor 7
-				<progress max="100" value="0">0%</progress>
-			</button>
-			<b class="up">&#8679;</b>
-		</div>
-	</div>
-
-	<svg width="800" height="600" viewBox="-400 -300 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<svg id="ring" width="800" height="600" viewBox="-420 -320 840 640" version="1.1" xmlns="http://www.w3.org/2000/svg">
 		<defs>
 			<path id="segment" d="M 123.74 123.74
 				A 175 175 0 0 0 175 0
@@ -84,36 +25,68 @@
 		</defs>
 
 		<g data-segmentId="0" data-angle="-22.5">
-			<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(20, 0) rotate(-22.5)" />
-			<use href="#fill" id="fill0" transform="translate(20, 0) rotate(-22.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			<text transform="translate(275, 10)" fill="#FFF">&#8681;</text>
+			<g class="segment">
+				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(20, 0) rotate(-22.5)" />
+				<use href="#fill" class="fill" transform="translate(20, 0) rotate(-22.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			</g>
+			<text transform="translate(275, -10)" fill="#FFF">&#8679;</text>
 		</g>
 		<g data-segmentId="1" data-angle="22.5">
-			<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(14.14, 14.14) rotate(22.5)" />
-			<use href="#fill" id="fill1" transform="translate(14.14, 14.14) rotate(22.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			<text transform="translate(190, 230)" fill="#FFF">&#8681;</text>
+			<g class="segment">
+				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(14.14, 14.14) rotate(22.5)" />
+				<use href="#fill" class="fill" transform="translate(14.14, 14.14) rotate(22.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			</g>
+			<text transform="translate(190, 210)" fill="#FFF">&#8679;</text>
 		</g>
 		<g data-segmentId="2" data-angle="67.5">
-			<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(0, 20) rotate(67.5)" />
-			<use href="#fill" id="fill2" transform="translate(0, 20) rotate(67.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			<text transform="translate(0, 310)" fill="#FFF">&#8681;</text>
+			<g class="segment">
+				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(0, 20) rotate(67.5)" />
+				<use href="#fill" class="fill" transform="translate(0, 20) rotate(67.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			</g>
+			<text transform="translate(0, 290)" fill="#FFF">&#8679;</text>
 		</g>
 		<g data-segmentId="3" data-angle="112.5">
-			<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(-14.14, 14.14) rotate(112.5)" />
-			<use href="#fill" id="fill3" transform="translate(-14.14, 14.14) rotate(112.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			<text transform="translate(-200, 230)" fill="#FFF">&#8681;</text>
+			<g class="segment">
+				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(-14.14, 14.14) rotate(112.5)" />
+				<use href="#fill" class="fill" transform="translate(-14.14, 14.14) rotate(112.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			</g>
+			<text transform="translate(-200, 210)" fill="#FFF">&#8679;</text>
 		</g>
 		<g data-segmentId="4" data-angle="157.5">
-			<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(-20, 0) rotate(157.5)" />
-			<use href="#fill" id="fill4" transform="translate(-20, 0) rotate(157.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			<text transform="translate(-285, 10)" fill="#FFF">&#8681;</text>
+			<g class="segment">
+				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(-20, 0) rotate(157.5)" />
+				<use href="#fill" class="fill" transform="translate(-20, 0) rotate(157.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			</g>
+			<text transform="translate(-285, -10)" fill="#FFF">&#8679;</text>
 		</g>
 		<g data-segmentId="5" data-angle="202.5">
-			<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(-14.14, -14.14) rotate(202.5)" />
-			<use href="#fill" id="fill5" transform="translate(-14.14, -14.14) rotate(202.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			<text transform="translate(-200, -210)" fill="#FFF">&#8681;</text>
+			<g class="segment">
+				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(-14.14, -14.14) rotate(202.5)" />
+				<use href="#fill" class="fill" transform="translate(-14.14, -14.14) rotate(202.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			</g>
+			<text transform="translate(-200, -230)" fill="#FFF">&#8679;</text>
 		</g>
 		<g data-segmentId="6" data-angle="247.5">
-			<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(0, -20) rotate(247.5)" />
-			<use href="#fill" id="fill6" transform="translate(0, -20) rotate(247.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			<text transform="translate(0, -280)" fill="#FFF">&#8681;</text>
+			<g class="segment">
+				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(0, -20) rotate(247.5)" />
+				<use href="#fill" class="fill" transform="translate(0, -20) rotate(247.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			</g>
+			<text transform="translate(0, -300)" fill="#FFF">&#8679;</text>
 		</g>
 		<g data-segmentId="7" data-angle="292.5">
-			<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(14.14, -14.14) rotate(292.5)" />
-			<use href="#fill" id="fill7" transform="translate(14.14, -14.14) rotate(292.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			<text transform="translate(190, -210)" fill="#FFF">&#8681;</text>
+			<g class="segment">
+				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(14.14, -14.14) rotate(292.5)" />
+				<use href="#fill" class="fill" transform="translate(14.14, -14.14) rotate(292.5)" style="stroke: #ECECEC; stroke-width: 90;" />
+			</g>
+			<text transform="translate(190, -230)" fill="#FFF">&#8679;</text>
 		</g>
 
 		<circle cx="0" cy="0" r="191" style="fill:#393637" />
@@ -130,6 +103,7 @@
 	</div>
 
 	<script src="src/socket.io.slim.js"></script>
+	<script src="src/motor.js"></script>
 	<script src="src/index.js"></script>
 </body>
 

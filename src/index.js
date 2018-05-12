@@ -24,114 +24,15 @@ socket.on('error', () => document.querySelector('#connectionStatus > span').text
 
 
 
-const segments = document.querySelectorAll('[data-segmentId]');
-
-segments.forEach((el) => {
-	el.isActive = false;
-	el.addEventListener('mousedown', function (event) {
-		this.querySelector('[href="#fill"').style.cssText = 'stroke: #F24C47; stroke-width: 90;';
-		socket.emit('bobble', JSON.stringify({ action: 'CHANGE_DIRECTION', payload: { angle: this.dataset['angle'] } }));
-	});
-});
-
-window.addEventListener('mouseup', function (event) {
-	segments.forEach((el) => {
-		el.querySelector('[href="#fill"').style.cssText = "stroke: #ECECEC; stroke-width: 90;";
-	});
-});
-
 document.getElementById('switchEdgy').addEventListener('click', () => {
-	console.debug(JSON.stringify({ action: 'SWITCH_EDGY' }));
 	socket.emit('bobble', JSON.stringify({ action: 'SWITCH_EDGY' }));
 });
 
 document.getElementById('playPause').addEventListener('click', () => {
-	console.debug(JSON.stringify({ action: 'PLAYPAUSE' }));
 	socket.emit('bobble', JSON.stringify({ action: 'PLAYPAUSE' }));
 });
 
 
 
-function Motor(id, DomNode) {
-	this._node = DomNode;
-	this._progress = this._node.querySelector('progress');
-	this._id = id;
-	this._intensity;
-	this._timeout;
-
-	this._node.addEventListener('mousedown', this.mouseDownHandler.bind(this));
-	window.addEventListener('mouseup', this.mouseUpHandler.bind(this));
-	this._node.previousElementSibling.addEventListener('click', () => this.decreaseBy(5));
-	this._node.nextElementSibling.addEventListener('click', () => this.increaseBy(5));
-
-	this.intensity = 50;
-}
-
-Object.defineProperties(Motor.prototype, {
-	id: {
-		get() {
-			return this._id;
-		}
-	},
-	intensity: {
-		get() {
-			return this._intensity;
-		},
-		set(value) {
-			const tmp = clampValue(value, 0, 100);
-			this._intensity = tmp;
-			this._progress.value = tmp;
-			this._progress.textContent = `${tmp}%`;
-		}
-	},
-	pwm: {
-		get() {
-			const inputMin = 0;
-			const inputMax = 100;
-			const outputMin = 75;
-			const outputMax = 255;
-			return mapInputToOutputRange(this._intensity, inputMin, inputMax, outputMin, outputMax);
-		}
-	}
-});
-
-Motor.prototype.mouseDownHandler = function mouseDownHandler() {
-	this.submit();
-}
-
-Motor.prototype.mouseUpHandler = function mouseUpHandler() {
-	clearTimeout(this._timeout);
-}
-
-Motor.prototype.submit = function submit() {
-
-	const payload = { action: 'VIBRATION', payload: `${this.id}=${this.pwm}` };
-	socket.emit('message', JSON.stringify(payload));
-
-	this._timeout = setTimeout(this.submit.bind(this), 250);
-	// if (ws.readyState === ws.OPEN) {
-	// 	ws.send(JSON.stringify(payload));
-	// }
-	// console.log(payload);
-}
-
-Motor.prototype.increaseBy = function increaseBy(val) {
-	this.intensity += val;
-}
-
-Motor.prototype.decreaseBy = function decreaseBy(val) {
-	this.intensity -= val;
-}
-
-
-
-const m0 = new Motor(0, document.getElementById('Herbert'));
-const m1 = new Motor(1, document.getElementById('Willhelm'));
-const m2 = new Motor(2, document.getElementById('Volker'));
-const m3 = new Motor(3, document.getElementById('Dietmar'));
-const m4 = new Motor(4, document.getElementById('Günther'));
-const m5 = new Motor(5, document.getElementById('Albert'));
-const m6 = new Motor(6, document.getElementById('Rufus'));
-const m7 = new Motor(7, document.getElementById('Werner'));
-
-console.log(m0);
+const segments = document.querySelectorAll('[data-segmentId]');
+const motors = Array.from(segments).map((el) => new Motor(el.dataset.segmentid, el, socket));

@@ -59,6 +59,7 @@ Motor.prototype.mouseDownHandler = function mouseDownHandler(e) {
 Motor.prototype.mouseUpHandler = function mouseUpHandler(e) {
     e.preventDefault();
     this._fill.style.stroke = '#ECECEC';
+    this._socket.emit('bobble', JSON.stringify({ action: 'STOP_DIRECTION'}));
 
     clearTimeout(this._timeout);
 }

@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Blender';
+    src: url('Blender-Pro-Thin.otf') format('opentype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Blender';
+    src: url('Blender-Pro-Medium.otf') format('opentype');
+    font-weight: bold;
+}
+
 html,
 body {
     margin: 0;
@@ -8,10 +20,10 @@ body {
     align-items: center;
     background: #393637;
     display: flex;
-    font-family: sans-serif;
-    font-variant-caps: small-caps;
+    font-family: 'Blender', sans-serif;
     height: 100vh;
     justify-content: center;
+    text-transform: uppercase;
     width: 100vw;
 }
 
@@ -23,10 +35,10 @@ button {
     border-width: 1px;
     color: #fff;
     font-size: 1.2em;
-    font-variant-caps: small-caps;
     font: inherit;
     margin: 0;
     padding: .5em 1em;
+    text-transform: uppercase;
 }
 
 .motor > b {
@@ -40,10 +52,10 @@ progress {
 
 
 #controlPanel {
-    bottom: 5vh;
+    /* bottom: 5vh; */
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     position: absolute;
     right: 3vw;
 }
@@ -56,9 +68,9 @@ progress {
     position: absolute;
     top: 3vh;
     right: 3vw;
-    color: #fff;
+    color: #F24C47;
 }
 
-/* use {
-    transform: scale(1.2) translate(14.14, -14.14) rotate(292.5deg);
-} */
+text {
+    font-size: 1.5em;
+}

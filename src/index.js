@@ -24,13 +24,29 @@ socket.on('error', () => document.querySelector('#connectionStatus > span').text
 
 
 
-document.getElementById('switchEdgy').addEventListener('click', () => {
-	socket.emit('bobble', JSON.stringify({ action: 'SWITCH_EDGY' }));
-});
+// const startExample = () => socket.emit('message', JSON.stringify({ action: 'VIBRATION', payload: '0=75,77,79,83,88,97,113,140,182,255,182,140,113,97,88,83,79,77,75&1=75,77,79,83,88,97,113,140,182,255,182,140,113,97,88,83,79,77,75&2=75,77,79,83,88,97,113,140,182,255,182,140,113,97,88,83,79,77,75&3=75,77,79,83,88,97,113,140,182,255,182,140,113,97,88,83,79,77,75&4=75,77,79,83,88,97,113,140,182,255,182,140,113,97,88,83,79,77,75&5=75,77,79,83,88,97,113,140,182,255,182,140,113,97,88,83,79,77,75&6=75,77,79,83,88,97,113,140,182,255,182,140,113,97,88,83,79,77,75&7=75,77,79,83,88,97,113,140,182,255,182,140,113,97,88,83,79,77,75' }));
+const switchEdgy = () => socket.emit('bobble', JSON.stringify({ action: 'SWITCH_EDGY' }));
+const playPause = () => socket.emit('bobble', JSON.stringify({ action: 'PLAYPAUSE' }));
 
-document.getElementById('playPause').addEventListener('click', () => {
-	socket.emit('bobble', JSON.stringify({ action: 'PLAYPAUSE' }));
-});
+let isRecording = false;
+const recording = (e) => {
+	isRecording = !isRecording;
+	socket.emit('message', JSON.stringify({ action: 'RECORDING', payload: isRecording }));
+	if (isRecording) {
+		e.target.style.color = '#F24C47';
+	} else {
+		e.target.style.color = '#FFF';
+	}
+}
+const example = () => socket.emit('message', JSON.stringify({ action: 'EXAMPLE' }));
+document.getElementById('recordExample').addEventListener('click', recording);
+document.getElementById('recordExample').addEventListener('touchstart', recording);
+document.getElementById('startExample').addEventListener('click', example);
+document.getElementById('startExample').addEventListener('touchstart', example);
+document.getElementById('switchEdgy').addEventListener('click', switchEdgy);
+document.getElementById('switchEdgy').addEventListener('touchstart', switchEdgy);
+document.getElementById('playPause').addEventListener('click', playPause);
+document.getElementById('playPause').addEventListener('touchstart', playPause);
 
 
 

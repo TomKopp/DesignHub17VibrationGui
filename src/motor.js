@@ -9,12 +9,16 @@ function Motor(id, DomNode, socket) {
     this._timeout;
 
     this._segment.addEventListener('mousedown', this.mouseDownHandler.bind(this));
+    this._segment.addEventListener('touchstart', this.mouseDownHandler.bind(this));
     window.addEventListener('mouseup', this.mouseUpHandler.bind(this));
+    window.addEventListener('touchend', this.mouseUpHandler.bind(this));
 
     this._node.firstElementChild.addEventListener('click', () => this.decreaseBy(5));
     this._node.lastElementChild.addEventListener('click', () => this.increaseBy(5));
+    this._node.firstElementChild.addEventListener('touchstart', () => this.decreaseBy(5));
+    this._node.lastElementChild.addEventListener('touchstart', () => this.increaseBy(5));
 
-    this.intensity = 50;
+    this.intensity = 75;
 }
 
 Object.defineProperties(Motor.prototype, {
@@ -44,14 +48,16 @@ Object.defineProperties(Motor.prototype, {
     }
 });
 
-Motor.prototype.mouseDownHandler = function mouseDownHandler() {
+Motor.prototype.mouseDownHandler = function mouseDownHandler(e) {
+    e.preventDefault();
     this._fill.style.stroke = '#F24C47';
     this._socket.emit('bobble', JSON.stringify({ action: 'CHANGE_DIRECTION', payload: { angle: this._angle } }));
 
     this.submit();
 }
 
-Motor.prototype.mouseUpHandler = function mouseUpHandler() {
+Motor.prototype.mouseUpHandler = function mouseUpHandler(e) {
+    e.preventDefault();
     this._fill.style.stroke = '#ECECEC';
     this._socket.emit('bobble', JSON.stringify({ action: 'STOP_DIRECTION'}));
 

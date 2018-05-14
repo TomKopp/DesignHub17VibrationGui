@@ -15,6 +15,12 @@
 
 	<svg id="ring" width="800" height="600" viewBox="-420 -320 840 640" version="1.1" xmlns="http://www.w3.org/2000/svg">
 		<defs>
+			<radialGradient id="SVGID_1_" cx="0" cy="0" r="191" gradientUnits="userSpaceOnUse">
+				<stop offset="0" style="stop-color:#575756"></stop>
+				<stop offset="0.1648" style="stop-color:#50504F"></stop>
+				<stop offset="0.6095" style="stop-color:#424140"></stop>
+				<stop offset="1" style="stop-color:#393637"></stop>
+			</radialGradient>
 			<path id="segment" d="M 123.74 123.74
 				A 175 175 0 0 0 175 0
 				l 75 0
@@ -24,7 +30,7 @@
 				A 175 175 0 0 0 175 0" fill="transparent" />
 		</defs>
 
-		<g data-segmentId="0" data-angle="-22.5">
+		<g data-segmentId="6" data-angle="-22.5">
 			<text transform="translate(275, 10)" fill="#FFF">&#8681;</text>
 			<g class="segment">
 				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(20, 0) rotate(-22.5)" />
@@ -32,7 +38,7 @@
 			</g>
 			<text transform="translate(275, -10)" fill="#FFF">&#8679;</text>
 		</g>
-		<g data-segmentId="1" data-angle="22.5">
+		<g data-segmentId="5" data-angle="22.5">
 			<text transform="translate(190, 230)" fill="#FFF">&#8681;</text>
 			<g class="segment">
 				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(14.14, 14.14) rotate(22.5)" />
@@ -40,7 +46,7 @@
 			</g>
 			<text transform="translate(190, 210)" fill="#FFF">&#8679;</text>
 		</g>
-		<g data-segmentId="2" data-angle="67.5">
+		<g data-segmentId="4" data-angle="67.5">
 			<text transform="translate(0, 310)" fill="#FFF">&#8681;</text>
 			<g class="segment">
 				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(0, 20) rotate(67.5)" />
@@ -56,7 +62,7 @@
 			</g>
 			<text transform="translate(-200, 210)" fill="#FFF">&#8679;</text>
 		</g>
-		<g data-segmentId="4" data-angle="157.5">
+		<g data-segmentId="2" data-angle="157.5">
 			<text transform="translate(-285, 10)" fill="#FFF">&#8681;</text>
 			<g class="segment">
 				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(-20, 0) rotate(157.5)" />
@@ -64,7 +70,7 @@
 			</g>
 			<text transform="translate(-285, -10)" fill="#FFF">&#8679;</text>
 		</g>
-		<g data-segmentId="5" data-angle="202.5">
+		<g data-segmentId="1" data-angle="202.5">
 			<text transform="translate(-200, -210)" fill="#FFF">&#8681;</text>
 			<g class="segment">
 				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(-14.14, -14.14) rotate(202.5)" />
@@ -72,7 +78,7 @@
 			</g>
 			<text transform="translate(-200, -230)" fill="#FFF">&#8679;</text>
 		</g>
-		<g data-segmentId="6" data-angle="247.5">
+		<g data-segmentId="0" data-angle="247.5">
 			<text transform="translate(0, -280)" fill="#FFF">&#8681;</text>
 			<g class="segment">
 				<use href="#segment" style="fill:#656363; stroke:#656363; stroke-width:0" transform="translate(0, -20) rotate(247.5)" />
@@ -89,12 +95,13 @@
 			<text transform="translate(190, -230)" fill="#FFF">&#8679;</text>
 		</g>
 
-		<circle cx="0" cy="0" r="191" style="fill:#393637" />
+		<circle cx="0" cy="0" r="191" style="fill:url(#SVGID_1_)" />
 	</svg>
 
 	<div id="controlPanel">
+		<button id="recordExample"><b>Record</b> Example</button>
 		<button id="startExample"><b>Start</b> Example</button>
-		<button id="switchEdgy">Switch Edgyness</button>
+		<button id="switchEdgy"><b>Switch</b> Edgyness</button>
 		<button id="playPause">Play / Pause</button>
 	</div>
 

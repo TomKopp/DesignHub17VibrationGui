@@ -28,7 +28,16 @@ socket.on('error', () => document.querySelector('#connectionStatus > span').text
 const switchEdgy = () => socket.emit('bobble', JSON.stringify({ action: 'SWITCH_EDGY' }));
 const playPause = () => socket.emit('bobble', JSON.stringify({ action: 'PLAYPAUSE' }));
 
-const recording = () => socket.emit('message', JSON.stringify({ action: 'RECORDING' }));
+let isRecording = false;
+const recording = (e) => {
+	isRecording = !isRecording;
+	socket.emit('message', JSON.stringify({ action: 'RECORDING', payload: isRecording }));
+	if (isRecording) {
+		e.target.style.color = '#F24C47';
+	} else {
+		e.target.style.color = '#FFF';
+	}
+}
 const example = () => socket.emit('message', JSON.stringify({ action: 'EXAMPLE' }));
 document.getElementById('recordExample').addEventListener('click', recording);
 document.getElementById('recordExample').addEventListener('touchstart', recording);

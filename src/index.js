@@ -33,9 +33,9 @@ const recording = (e) => {
 	isRecording = !isRecording;
 	socket.emit('message', JSON.stringify({ action: 'RECORDING', payload: isRecording }));
 	if (isRecording) {
-		e.target.style.color = '#F24C47';
+		e.currentTarget.style.color = '#F24C47';
 	} else {
-		e.target.style.color = '#FFF';
+		e.currentTarget.style.color = '#FFF';
 	}
 }
 const example = () => socket.emit('message', JSON.stringify({ action: 'EXAMPLE' }));
